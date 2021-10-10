@@ -7,6 +7,10 @@ import {
   Route
 } from "react-router-dom";
 import { withAuth0 } from '@auth0/auth0-react';
+import Home from './components/Home';
+import Login from './components/Login';
+import FavFruit from './components/FavFruit';
+import Profile from './components/Profile';
 
 
 class App extends React.Component {
@@ -14,20 +18,30 @@ class App extends React.Component {
   render() {
     console.log('app', this.props);
     const { isAuthenticated } = this.props.auth0;
-    return(
+    return (
       <>
         <Router>
-            <Header />
-            <Switch>
-              <Route exact path="/">
-                {/* TODO: if the user is logged in, render the `Home` component, if they are not, render the `Login` component */}
-              </Route>
-              <Route exact path="/favFruit">
-                {/* TODO: if the user is logged in, render the `FavFruit` component, if they are not, render the `Login` component */}
-              </Route>
-            </Switch>
-            <Footer />
-        </Router>
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              {/* TODO: if the user is logged in, render the `Home` component, if they are not, render the `Login` component */}
+              {/* Terrnary Condition, isAuthenticated have boolean value true or false */}
+              {isAuthenticated ? <Home /> : <Login />};
+
+            </Route>
+            <Route exact path="/favFruit">
+              {/* TODO: if the user is logged in, render the `FavFruit` component, if they are not, render the `Login` component */}
+              {isAuthenticated ? <FavFruit /> : <Login />}
+            </Route>
+          
+          {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+          <Route exact path="/Profile">
+            <Profile />
+          </Route>
+
+        </Switch>
+        <Footer />
+      </Router>
       </>
     );
   }
