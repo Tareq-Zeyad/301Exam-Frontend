@@ -22,7 +22,7 @@ class UpdatetModal extends React.Component {
 
              <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Photo</Form.Label>
-              <Form.Control type="text" placeholder="Enter image url" />
+              <Form.Control type="text" name="fruitImage" defaultValue={this.props.fruitImage} placeholder="Enter image url" />
             </Form.Group>
             <Button variant="primary" type="submit">
               Submit
